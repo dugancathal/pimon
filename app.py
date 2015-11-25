@@ -87,5 +87,5 @@ if __name__ == "__main__":
         rgb = BuildMapper(build["status"]).to_color()
         strip.colorWipe(rgb)
         strip.flipFlop()
-        strip.reset()
+    strip.reset()
 
