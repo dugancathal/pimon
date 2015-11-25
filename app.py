@@ -27,6 +27,7 @@ class NeopixelStrip:
     LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
     def __init__(self):
+        self.direction = 'forward'
         self.strip = Adafruit_NeoPixel(
             self.LED_COUNT,
             self.LED_PIN,
@@ -38,9 +39,20 @@ class NeopixelStrip:
         self.strip.begin()
 
     def colorWipe(self, color, wait_ms=50):
-        for i in range(self.numPixels()):
+        for i in self.iterator():
             self.setColorOf(i, color)
             time.sleep(wait_ms/1000.0)
+
+    def iterator(self):
+        if self.direction == 'backward':
+            return reversed(range(self.numPixels()))
+        else:
+            return range(self.numPixels())
+    def flipFlop(self):
+        if self.direction == 'backward':
+            self.direction = 'forward'
+        else:
+            self.direction = 'backward'
 
     def numPixels(self):
         return self.strip.numPixels()
@@ -74,5 +86,6 @@ if __name__ == "__main__":
     for index, build in enumerate(fetcher.builds()):
         rgb = BuildMapper(build["status"]).to_color()
         strip.colorWipe(rgb)
+        strip.flipFlop()
         strip.reset()
 
