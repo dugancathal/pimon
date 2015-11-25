@@ -85,6 +85,9 @@ if __name__ == "__main__":
 
     for index, build in enumerate(fetcher.builds()):
         rgb = BuildMapper(build["status"]).to_color()
+        for i in range(index+1):
+            strip.setColorOf(i, Color(255, 255, 255))
+        time.sleep(1)
         strip.colorWipe(rgb)
         strip.flipFlop()
     strip.reset()
