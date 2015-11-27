@@ -23,20 +23,26 @@ def twinkle(strip):
     for i in range(strip.numPixels()):
         pixels[i] = [10, 10, 10]
 
-    index = randomPixelIndex()
-    pixel = pixels[index]
+    index = randomPixelIndex(strip)
+    twinklers = [None for i in range(rand(5))]
+    for i, _ in enumerate(twinklers):
+        randomIndex = randomPixelIndex(strip)
+        twinklers[i] = [randomIndex, pixels[randomIndex]]
+
     for i in range(0, 5):
-        r = pixel[0] * (i + 1); r /= 5
-        g = pixel[1] * (i + 1); g /= 5
-        b = pixel[2] * (i + 1); b /= 5
-        strip.setPixelColor(index, Color(int(r), int(g), int(b)))
+        for index, pixel in twinklers:
+            r = pixel[0] * (i + 1); r /= 5
+            g = pixel[1] * (i + 1); g /= 5
+            b = pixel[2] * (i + 1); b /= 5
+            strip.setPixelColor(index, Color(int(r), int(g), int(b)))
         strip.show()
         time.sleep(0.05)
     for i in reversed(range(0, 6)):
-        r = pixel[0] * (i + 1); r /= 5
-        g = pixel[1] * (i + 1); g /= 5
-        b = pixel[2] * (i + 1); b /= 5
-        strip.setPixelColor(index, Color(int(r), int(g), int(b)))
+        for index, pixel in twinklers:
+            r = pixel[0] * (i); r /= 5
+            g = pixel[1] * (i); g /= 5
+            b = pixel[2] * (i); b /= 5
+            strip.setPixelColor(index, Color(int(r), int(g), int(b)))
         strip.show()
         time.sleep(0.05)
 
