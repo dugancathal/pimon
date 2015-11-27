@@ -1,3 +1,4 @@
+import math
 import time
 import sys
 from random import randrange as rand
@@ -6,7 +7,7 @@ from neopixel import *
 FADE_RATE = 0.96
 
 def randomPixelIndex(strip):
-    return rand(strip.numPixels)
+    return rand(strip.numPixels())
 
 def randomRGB():
     return [ rand(255), rand(255), rand(255) ]
@@ -15,39 +16,41 @@ def randomColor():
     return Color(*randomRGB())
 
 def faded(colorBit):
-    return colorBit * FADE_RATE
+    return int(math.floor(colorBit * FADE_RATE))
 
 def twinkle(strip):
-    pixels = []
+    pixels = list(range(strip.numPixels()))
     for i in range(strip.numPixels()):
         pixels[i] = randomRGB()
 
     if rand(0,20) == 1:
         i = randomPixelIndex(strip)
-        pixel[i] = randomRGB()
-        strip.setPixelColor(i, Color(*pixel[i]))
+        pixels[i] = randomRGB()
+        strip.setPixelColor(i, Color(*pixels[i]))
 
-    for index, pixel in enumerate(range(strip.numPixels())):
-        if pixels[i][0] > 1 && pixels[i][1] > 1 && pixels[i][2] > 1:
-            strip.setPixelColor(i, Color(*pixel[i]))
+    for index, pixel in enumerate(pixels):
+        if pixel[0] > 1 and pixel[1] > 1 and pixels[2] > 1:
+            strip.setPixelColor(index, Color(*pixel))
 
-        if pixel[i][0] > 1:
-            pixel[i] = faded(pixel[i])
-        else:
-            pixel[i][0] = 0
+            if pixel[0] > 1:
+                pixels[index][0] = faded(pixel[0])
+            else:
+                pixels[index][0] = 0
 
-        if pixel[i][1] > 1:
-            pixel[i] = faded(pixel[i])
-        else:
-            pixel[i][1] = 0
+            if pixel[1] > 1:
+                pixels[index][1] = faded(pixel[1])
+            else:
+                pixels[index][1] = 0
 
-        if pixel[i][2] > 1:
-            pixel[i] = faded(pixel[i])
-        else:
-            pixel[i][2] = 0
+            if pixel[2] > 1:
+                pixels[index][2] = faded(pixel[2])
+            else:
+                pixels[index][2] = 0
 
+	else:
+	    strip.setPixelColor(index, Color(0, 0, 0))
     strip.show()
-    time.sleep(0.01)
+    time.sleep(0.1)
 
 if __name__ == "__main__":
     LED_COUNT      = 60      # Number of LED pixels.
