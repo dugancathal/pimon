@@ -3,9 +3,6 @@ import time
 import sys
 from neopixel import *
 
-NUM_SECONDS=int(sys.argv[1])
-SCHEME_NAME=sys.argv[2]
-
 class Scheme:
     def __init__(self, colors, count):
         self.colors = colors
@@ -75,6 +72,10 @@ if __name__ == "__main__":
     LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
     LED_BRIGHTNESS = 100     # Set to 0 for darkest and 255 for brightest
     LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
+
+    NUM_SECONDS=int(sys.argv[1])
+    SCHEME_NAME=sys.argv[2]
+
     strip = Adafruit_NeoPixel(
         LED_COUNT,
         LED_PIN,
