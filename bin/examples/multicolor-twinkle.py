@@ -18,7 +18,7 @@ def randomColor():
 def faded(colorBit):
     return int(math.floor(colorBit * FADE_RATE))
 
-def twinkle(strip):
+def multicolorTwinkle(strip):
     pixels = list(range(strip.numPixels()))
     for i in range(strip.numPixels()):
         pixels[i] = randomRGB()
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     )
     strip.begin()
     for i in range(NUM_SECONDS*100):
-        twinkle(strip)
+        multicolorTwinkle(strip)
     for i in reversed(range(strip.numPixels())):
         strip.setPixelColor(i, Color(0, 0, 0))
         time.sleep(0.1)
