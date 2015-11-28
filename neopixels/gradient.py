@@ -34,7 +34,7 @@ class Gradient:
         return remap_color(range_index % self.gradient_range, 0, self.gradient_range, self.scheme.colors[start],
                            self.scheme.colors[the_end]),
 
-    def gradient(self):
+    def step(self):
         current_time_in_ms = int(time.time() * 1000)
 
         offset = 0

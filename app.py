@@ -28,6 +28,7 @@ if __name__ == "__main__":
             strip.color_wipe(build.to_color())
             strip.reset()
 
-        Gradient(strip, args.gradient, 8, 250)
-
-        time.sleep(args.poll_frequency)
+        g = Gradient(strip, args.gradient, 8, 250)
+        for i in range(args.poll_frequency):
+            g.step()
+            time.sleep(0.1)
