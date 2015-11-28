@@ -1,7 +1,7 @@
 import time
 from random import randrange as rand
 
-from utils.colors import Color
+from utils.colors import Color, gray
 
 
 class Twinkle:
@@ -15,6 +15,9 @@ class Twinkle:
 
     def step(self):
         twinklers = [self.strip.random_pixel() for _ in range(rand(15))]
+        for i, pixel in enumerate(twinklers):
+            pixel.set_color(i, gray)
+        self.strip.show()
         for i in range(0, 5):
             self.fade(i, twinklers)
         for i in reversed(range(0, 6)):
@@ -22,11 +25,11 @@ class Twinkle:
 
     def fade(self, i, pixels):
         for index, pixel in enumerate(pixels):
-            r = pixel.red() * i
+            r = pixel.red() * (i+1)
             r /= 5
-            g = pixel.green() * i
+            g = pixel.green() * (i+1)
             g /= 5
-            b = pixel.blue() * i
+            b = pixel.blue() * (i+1)
             b /= 5
             pixel.set_color(Color(int(r), int(g), int(b)))
         self.strip.show()
