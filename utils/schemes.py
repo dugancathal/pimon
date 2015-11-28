@@ -1,3 +1,4 @@
+import random
 import colors
 
 
@@ -6,6 +7,10 @@ class Scheme:
         self.count = count
         self.colors = colorset
 
+
+def random_scheme():
+    name = random.choice(["christmas", "rgb", "hanukkah", "rainbow", "fire", "kwanzaa"])
+    return globals()[name]
 
 christmas = Scheme(2, [
     colors.red,

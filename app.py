@@ -1,7 +1,9 @@
-import sys
-from builds import circleci
-from neopixels.pixel_strip import PixelStrip
 import argparse
+import time
+
+from builds import circleci
+from neopixels.gradient import Gradient
+from neopixels.pixel_strip import PixelStrip
 
 parser = argparse.ArgumentParser(description='Monitor your build!')
 parser.add_argument('--project', action='store', required=True,
@@ -21,7 +23,11 @@ if __name__ == "__main__":
     strip = PixelStrip()
     fetcher = circleci.BuildFetcher(args.project, args.token)
 
-    for index, build in enumerate(fetcher.builds()):
-        strip.color_wipe(build.to_color())
-        strip.reset()
+    while True:
+        for index, build in enumerate(fetcher.builds()):
+            strip.color_wipe(build.to_color())
+            strip.reset()
 
+        Gradient(strip, args.gradient, 8, 250)
+
+        time.sleep(args.poll_frequency)
