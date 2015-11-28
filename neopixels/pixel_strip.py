@@ -42,7 +42,7 @@ class PixelStrip:
             self.set_color_of(i, colors.black)
 
     def random_pixel(self):
-        choice(self.pixels)
+        return choice(self.pixels)
 
 
 class Pixel:
