@@ -1,4 +1,5 @@
 import time
+from random import choice
 from neopixel import *
 
 from utils import colors
@@ -22,7 +23,7 @@ class PixelStrip:
             self.LED_BRIGHTNESS
         )
         self.strip.begin()
-        self.pixels = map(lambda x: Pixel(x, colors.black), list(range(self.num_pixels())))
+        self.pixels = map(lambda x: Pixel(x, colors.black, self), list(range(self.num_pixels())))
 
     def color_wipe(self, color, wait_ms=50):
         for i in range(self.num_pixels()):
@@ -40,11 +41,18 @@ class PixelStrip:
         for i in range(self.num_pixels()):
             self.set_color_of(i, colors.black)
 
+    def random_pixel(self):
+        choice(self.pixels)
+
 
 class Pixel:
-    def __init__(self, index, color):
+    def __init__(self, index, color, strip):
         self.index = index
         self.color = color
+        self.old_color = color
+        self.strip = strip
 
     def set_color(self, new_color):
-        self.set_color(new_color)
+        self.old_color = self.color
+        self.color = new_color
+        self.strip.set_color_of(self.index, new_color)
