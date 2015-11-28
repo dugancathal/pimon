@@ -5,8 +5,6 @@ from utils.colors import Color, gray
 
 
 class Twinkle:
-    FADE_RATE = 0.96
-
     def __init__(self, strip):
         self.strip = strip
 
@@ -22,6 +20,7 @@ class Twinkle:
             self.fade(i, twinklers)
         for i in reversed(range(0, 6)):
             self.fade(i, twinklers)
+        self.strip.reset()
 
     def fade(self, i, pixels):
         for index, pixel in enumerate(pixels):
@@ -31,6 +30,6 @@ class Twinkle:
             g /= 5
             b = pixel.blue() * (i+1)
             b /= 5
-            pixel.set_color(Color(int(r), int(g), int(b)))
-        self.strip.show()
+            self.strip.strip.setPixelColor(pixel.index, Color(int(r), int(g), int(b)))
+        self.strip.strip.show()
         time.sleep(0.05)
