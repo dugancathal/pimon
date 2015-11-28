@@ -2,7 +2,7 @@ import requests
 from utils import colors
 
 
-class CircleCiBuildFetcher():
+class BuildFetcher:
     api_url = "https://circleci.com/api/v1"
 
     def __init__(self, project, token):
