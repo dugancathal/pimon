@@ -1,4 +1,5 @@
 import random
+
 import colors
 
 
@@ -10,7 +11,12 @@ class Scheme:
 
 def random_scheme():
     name = random.choice(["christmas", "rgb", "hanukkah", "rainbow", "fire", "kwanzaa"])
+    return get_scheme(name)
+
+
+def get_scheme(name):
     return globals()[name]
+
 
 christmas = Scheme(2, [
     colors.red,

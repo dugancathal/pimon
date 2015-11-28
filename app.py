@@ -4,6 +4,7 @@ import time
 from builds import circleci
 from neopixels.gradient import Gradient
 from neopixels.pixel_strip import PixelStrip
+from utils import schemes
 
 parser = argparse.ArgumentParser(description='Monitor your build!')
 parser.add_argument('--project', action='store', required=True,
@@ -28,7 +29,7 @@ if __name__ == "__main__":
             strip.color_wipe(build.to_color())
             strip.reset()
 
-        g = Gradient(strip, args.gradient, 8, 250)
+        g = Gradient(strip, schemes.get_scheme(args.gradient), 8, 250)
         for i in range(args.poll_frequency):
             g.step()
             time.sleep(0.1)

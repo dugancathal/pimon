@@ -41,7 +41,7 @@ class Gradient:
         if self.speed > 0:
             offset = current_time_in_ms / self.speed
 
-        old_color = self.smooth_color_over_range(self.strip.numPixels() - 1 + offset)
+        old_color = self.smooth_color_over_range(self.strip.num_pixels() - 1 + offset)
         for i in range(self.strip.num_pixels()):
             current_color = self.smooth_color_over_range(i + offset)
             new_color = current_color
