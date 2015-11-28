@@ -4,6 +4,7 @@ import time
 from builds import circleci
 from neopixels.gradient import Gradient
 from neopixels.pixel_strip import PixelStrip
+from neopixels.twinkle import Twinkle
 from utils import schemes
 
 parser = argparse.ArgumentParser(description='Monitor your build!')
@@ -16,7 +17,7 @@ parser.add_argument('--filler', action='store', default='cycle',
                     help='what to do when not showing you your build state')
 parser.add_argument('--gradient', action='store', default='hanukkah',
                     help='the color scheme to show for the gradient filler')
-parser.add_argument('--poll-frequency', action='store', default=30,
+parser.add_argument('--poll-frequency', action='store', type=int, default=30,
                     help='number of seconds to wait between polls')
 
 args = parser.parse_args()
@@ -29,7 +30,13 @@ if __name__ == "__main__":
             strip.color_wipe(build.to_color())
             strip.reset()
 
-        g = Gradient(strip, schemes.get_scheme(args.gradient), 8, 250)
-        for i in range(args.poll_frequency):
-            g.step()
-            time.sleep(0.1)
+        if args.filler == 'gradient':
+            g = Gradient(strip, schemes.get_scheme(args.gradient), 8, 250)
+            for i in range(args.poll_frequency):
+                g.step()
+                time.sleep(0.1)
+        elif args.filler == 'twinkle':
+            t = Twinkle(strip)
+            for i in range(args.poll_frequency):
+                t.step()
+                time.sleep(0.1)
