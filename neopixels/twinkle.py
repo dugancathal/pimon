@@ -13,7 +13,7 @@ class Twinkle:
     def random_pixel_index(self):
         return rand(self.strip.num_pixels())
 
-    def step(self, strip):
+    def step(self):
         twinklers = [self.strip.random_pixel() for _ in range(rand(15))]
         for i in range(0, 5):
             self.fade(i, twinklers)
