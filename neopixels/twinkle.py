@@ -15,8 +15,8 @@ class Twinkle:
 
     def step(self):
         twinklers = [self.strip.random_pixel() for _ in range(rand(15))]
-        for i, pixel in enumerate(twinklers):
-            pixel.set_color(i, gray)
+        for pixel in twinklers:
+            pixel.set_color(gray)
         self.strip.show()
         for i in range(0, 5):
             self.fade(i, twinklers)
