@@ -21,12 +21,12 @@ class Twinkle:
             self.fade(i, twinklers)
 
     def fade(self, i, pixels):
-        for index, pixel in pixels:
-            r = pixel.red * i
+        for index, pixel in enumerate(pixels):
+            r = pixel.red() * i
             r /= 5
-            g = pixel.green * i
+            g = pixel.green() * i
             g /= 5
-            b = pixel.blue * i
+            b = pixel.blue() * i
             b /= 5
             pixel.set_color(Color(int(r), int(g), int(b)))
         self.strip.show()

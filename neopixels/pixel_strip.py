@@ -56,3 +56,12 @@ class Pixel:
         self.old_color = self.color
         self.color = new_color
         self.strip.set_color_of(self.index, new_color)
+
+    def red(self):
+        return self.color.red
+
+    def green(self):
+        return self.color.green
+
+    def blue(self):
+        return self.color.blue
