@@ -15,7 +15,7 @@ parser.add_argument('--filler', action='store', default='cycle',
                     help='what to do when not showing you your build state')
 parser.add_argument('--gradient', action='store', default='hanukkah',
                     help='the color scheme to show for the gradient filler')
-parser.add_argument('--poll-frequency', action='store', default='30',
+parser.add_argument('--poll-frequency', action='store', default=30,
                     help='number of seconds to wait between polls')
 
 args = parser.parse_args()
