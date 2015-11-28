@@ -35,7 +35,7 @@ class PixelStrip:
 
     def set_color_of(self, pixel_index, color):
         self.strip.setPixelColor(pixel_index, color.to_i())
-        self.strip.show()
+        self.show()
 
     def reset(self):
         for i in range(self.num_pixels()):
@@ -43,6 +43,11 @@ class PixelStrip:
 
     def random_pixel(self):
         return choice(self.pixels)
+
+    def show(self):
+        for index, pixel in enumerate(self.pixels):
+            self.strip.setPixelColor(index, pixel.color.to_i())
+            self.strip.show()
 
 
 class Pixel:
@@ -55,7 +60,6 @@ class Pixel:
     def set_color(self, new_color):
         self.old_color = self.color
         self.color = new_color
-        self.strip.set_color_of(self.index, new_color)
 
     def red(self):
         return self.color.red
