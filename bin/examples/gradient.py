@@ -61,9 +61,10 @@ def gradient(strip, scheme, repeat, speedInMS):
 schemes = {
 	"christmas": Scheme([[255, 0, 0], [0, 255, 0]], 2),
 	"rgb": Scheme([[255, 0, 0], [0, 255, 0], [0, 0, 255]], 3),
-        "hanukkah": Scheme([[0, 0, 255], [255, 255, 255]], 2),
-        "rainbow": Scheme([[255, 0, 0], [255, 128, 0], [255, 255, 0], [0, 255, 0], [0, 0, 255], [128, 0, 255], [255, 0, 255], [255, 255, 255]], 8),
-        "fire": Scheme([[255, 0, 0], [255, 102, 0], [255, 192, 0]], 3),
+    "kwanzaa": Scheme([[255, 0, 0], [0, 0, 0], [0, 255, 0]], 3),
+    "hanukkah": Scheme([[0, 0, 255], [255, 255, 255]], 2),
+    "rainbow": Scheme([[255, 0, 0], [255, 128, 0], [255, 255, 0], [0, 255, 0], [0, 0, 255], [128, 0, 255], [255, 0, 255], [255, 255, 255]], 8),
+    "fire": Scheme([[255, 0, 0], [255, 102, 0], [255, 192, 0]], 3),
 }
 if __name__ == "__main__":
     LED_COUNT      = 60      # Number of LED pixels.
@@ -86,7 +87,7 @@ if __name__ == "__main__":
     )
     strip.begin()
     for i in range(NUM_SECONDS*10):
-        gradient(strip, schemes[SCHEME_NAME], 6, 100)
+        gradient(strip, schemes[SCHEME_NAME], 12, 50)
         time.sleep(0.1)
     for i in reversed(range(strip.numPixels())):
         strip.setPixelColor(i, Color(0, 0, 0))
