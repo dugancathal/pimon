@@ -35,10 +35,12 @@ class PixelStrip:
 
     def set_color_of(self, pixel_index, color):
         self.strip.setPixelColor(pixel_index, color.to_i())
+        self.pixels[pixel_index].set_color(color)
         self.strip.show()
 
     def reset(self):
         for i in range(self.num_pixels()):
+            self.pixels[i].set_color(colors.black)
             self.set_color_of(i, colors.black)
 
     def random_pixel(self):

@@ -30,6 +30,6 @@ class Twinkle:
             g /= 5
             b = pixel.blue() * (i+1)
             b /= 5
-            self.strip.strip.setPixelColor(pixel.index, Color(int(r), int(g), int(b)))
+            self.strip.strip.setPixelColor(pixel.index, Color(int(r), int(g), int(b)).to_i())
         self.strip.strip.show()
         time.sleep(0.05)
