@@ -5,7 +5,7 @@ from builds import circleci
 from neopixels.gradient import Gradient
 from neopixels.pixel_strip import PixelStrip
 from neopixels.twinkle import Twinkle
-from utils import schemes
+from utils import schemes, colors
 
 parser = argparse.ArgumentParser(description='Monitor your build!')
 parser.add_argument('--project', action='store', required=True,
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     while True:
         for index, build in enumerate(fetcher.builds()):
             strip.color_wipe(build.to_color())
-            strip.reset()
+            strip.color_wipe(colors.black)
 
         if args.filler == 'gradient':
             g = Gradient(strip, schemes.get_scheme(args.gradient), 8, 250)
