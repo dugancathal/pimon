@@ -5,14 +5,15 @@ from utils import colors
 class BuildFetcher:
     api_url = "https://circleci.com/api/v1"
 
-    def __init__(self, project, token):
+    def __init__(self, project, token, num_builds):
+        self.num_builds = num_builds
         self.project_endpoint = "%(url)s/project/%(project)s" % {"url": self.api_url, "project": project}
         self.token = token
 
     def builds(self):
         build_list = requests.get(
             self.project_endpoint,
-            params={"circle-token": self.token, "limit": 5},
+            params={"circle-token": self.token, "limit": self.num_builds},
             headers={"Accept": "application/json"}
         ).json()
 

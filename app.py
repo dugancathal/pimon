@@ -19,11 +19,13 @@ parser.add_argument('--gradient', action='store', default='hanukkah',
                     help='the color scheme to show for the gradient filler')
 parser.add_argument('--poll-frequency', action='store', type=int, default=30,
                     help='number of seconds to wait between polls')
+parser.add_argument('--num-builds', action='store', type=int, default=1,
+                    help='number of builds to poll and show')
 
 args = parser.parse_args()
 if __name__ == "__main__":
     strip = PixelStrip()
-    fetcher = circleci.BuildFetcher(args.project, args.token)
+    fetcher = circleci.BuildFetcher(args.project, args.token, args.num_builds)
 
     while True:
         for index, build in enumerate(fetcher.builds()):
