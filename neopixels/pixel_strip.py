@@ -25,8 +25,11 @@ class PixelStrip:
         self.strip.begin()
         self.pixels = map(lambda x: Pixel(x, colors.black, self), list(range(self.num_pixels())))
 
-    def color_wipe(self, color, wait_ms=50):
-        for i in range(self.num_pixels()):
+    def color_wipe(self, color, wait_ms=50, reverse_wipe=False):
+        pixels = range(self.num_pixels())
+        if reverse_wipe:
+            pixels = reversed(pixels)
+        for i in pixels:
             self.set_color_of(i, color)
             time.sleep(wait_ms / 1000.0)
 

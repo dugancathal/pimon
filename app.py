@@ -30,7 +30,7 @@ if __name__ == "__main__":
     while True:
         for index, build in enumerate(fetcher.builds()):
             strip.color_wipe(build.to_color())
-            strip.color_wipe(colors.black)
+            strip.color_wipe(colors.black, reverse_wipe=True)
 
         if args.filler == 'gradient':
             g = Gradient(strip, schemes.get_scheme(args.gradient), 8, 250)
