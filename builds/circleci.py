@@ -26,7 +26,8 @@ class Build:
         "fixed": colors.green,
         "success": colors.green,
         "running": colors.yellow,
-        "not_run": colors.black
+        "not_run": colors.blue,
+        "canceled": colors.blue
     }
 
     def __init__(self, status):
