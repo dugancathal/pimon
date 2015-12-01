@@ -45,3 +45,6 @@ You will probably also need a monitor and keyboard for initial setup.
   * There are a number of example scripts available. The low-level Pi interface provides some [testing scripts](https://github.com/jgarff/rpi_ws281x/blob/master/python/examples/strandtest.py), or you can jump straight to some of the examples [here](bin/examples).
 
 6) Profit.
+
+![Tree1](https://cloud.githubusercontent.com/assets/1172512/11493781/6dac0486-97b9-11e5-8cf8-e4892a7aff8d.jpg)
+![Tree2](https://cloud.githubusercontent.com/assets/1172512/11493805/9d3de6ba-97b9-11e5-840a-2575e83cf893.jpg)
