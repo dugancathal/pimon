@@ -35,7 +35,7 @@ class Gradient:
                            self.scheme.colors[the_end])
 
     def step(self, times=1):
-        for i in range(times):
+        for i in range(times*10):
             self.render()
 
     def render(self):
