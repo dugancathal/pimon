@@ -17,12 +17,12 @@ class MultiSwipe:
     def fill(self):
         for tick in range(self.section_length):
             self.render_at(tick)
-            self.sleep(0.2)
+            self.sleep(0.1)
 
     def empty(self):
         for tick in reversed(range(self.section_length)):
             self.clear_at(tick)
-            self.sleep(0.2)
+            self.sleep(0.1)
 
     def render_at(self, tick):
         for i, color in enumerate(self.colors):
