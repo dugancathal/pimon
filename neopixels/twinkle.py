@@ -11,7 +11,11 @@ class Twinkle:
     def random_pixel_index(self):
         return rand(self.strip.num_pixels())
 
-    def step(self):
+    def step(self, times=1):
+        for i in range(times):
+            self.render()
+
+    def render(self):
         twinklers = [self.strip.random_pixel() for _ in range(rand(15))]
         for pixel in twinklers:
             pixel.set_color(gray)

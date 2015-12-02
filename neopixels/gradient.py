@@ -34,13 +34,15 @@ class Gradient:
         return remap_color(range_index % self.gradient_range, 0, self.gradient_range, self.scheme.colors[start],
                            self.scheme.colors[the_end])
 
-    def step(self):
-        current_time_in_ms = int(time.time() * 1000)
+    def step(self, times=1):
+        for i in range(times):
+            self.render()
 
+    def render(self):
+        current_time_in_ms = int(time.time() * 1000)
         offset = 0
         if self.speed > 0:
             offset = current_time_in_ms / self.speed
-
         old_color = self.smooth_color_over_range(self.strip.num_pixels() - 1 + offset)
         for i in range(self.strip.num_pixels()):
             current_color = self.smooth_color_over_range(i + offset)

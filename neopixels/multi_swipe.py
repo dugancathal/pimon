@@ -10,9 +10,10 @@ class MultiSwipe:
         self.strip = strip
         self.section_length = int(self.strip.num_pixels() / len(self.colors))
 
-    def step(self):
-        self.fill()
-        self.empty()
+    def step(self, times=1):
+        for _ in range(times):
+            self.fill()
+            self.empty()
 
     def fill(self):
         for tick in range(self.section_length):
