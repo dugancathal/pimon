@@ -18,7 +18,7 @@ class BuildFetcher:
             headers={"Accept": "application/json"}
         ).json()
 
-        return map(lambda build: Build(build["status"], self.project), build_list)
+        return map(lambda build: Build(build.get("status", "unknown"), self.project), build_list)
 
 
 class Build:
@@ -28,7 +28,8 @@ class Build:
         "success": colors.green,
         "running": colors.yellow,
         "not_run": colors.blue,
-        "canceled": colors.blue
+        "canceled": colors.blue,
+        "unknown": colors.gray,
     }
 
     def __init__(self, status, project):
